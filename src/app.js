@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
 import connectDB from './config/db.js';
+import authRoutes from './routes/auth.routes.js'
 
 dotenv.config();
 
@@ -11,6 +12,8 @@ app.use(express.json());
 app.use(cors());
 
 connectDB();
+
+app.use('/api/auth', authRoutes)
 
 app.get('/', (req, res) => {
     res.send('API en ligne 🚀');
