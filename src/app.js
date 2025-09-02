@@ -3,6 +3,8 @@ import express from 'express';
 import cors from 'cors';
 import connectDB from './config/db.js';
 import authRoutes from './routes/auth.routes.js'
+import projectRoutes from "./routes/project.routes.js";
+import taskRoutes from "./routes/task.routes.js";
 
 dotenv.config();
 
@@ -14,6 +16,8 @@ app.use(cors());
 connectDB();
 
 app.use('/api/auth', authRoutes)
+app.use("/projects", projectRoutes);
+app.use("/", taskRoutes);
 
 app.get('/', (req, res) => {
     res.send('API en ligne 🚀');
